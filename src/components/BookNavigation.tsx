@@ -9,25 +9,25 @@ interface BookNavigationProps {
   onToggleTOC: () => void;
 }
 
-export const BookNavigation = ({ 
-  currentPage, 
-  totalPages, 
-  onPrevious, 
+export const BookNavigation = ({
+  currentPage,
+  totalPages,
+  onPrevious,
   onNext,
-  onToggleTOC 
+  onToggleTOC
 }: BookNavigationProps) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border p-4 z-30">
-      <div className="max-w-4xl mx-auto flex items-center justify-between">
+    <div className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border p-4 z-30 h-16 flex items-center">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4">
         <button
           onClick={onPrevious}
           disabled={currentPage === 0}
-          className={cn("nav-button", currentPage === 0 && "opacity-40")}
+          className={cn("nav-button", currentPage === 0 && "opacity-40 pointer-events-none")}
           aria-label="דף קודם"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
-        
+
         <div className="flex items-center gap-4">
           <button
             onClick={onToggleTOC}
@@ -36,24 +36,24 @@ export const BookNavigation = ({
           >
             <Menu className="w-5 h-5" />
           </button>
-          
+
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-muted-foreground w-12 text-center font-mono">
               {currentPage + 1} / {totalPages}
             </span>
-            <div className="w-32 h-1.5 bg-secondary rounded-full overflow-hidden">
-              <div 
+            <div className="w-24 md:w-48 h-1.5 bg-secondary rounded-full overflow-hidden">
+              <div
                 className="h-full bg-primary transition-all duration-300 rounded-full"
                 style={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
               />
             </div>
           </div>
         </div>
-        
+
         <button
           onClick={onNext}
           disabled={currentPage === totalPages - 1}
-          className={cn("nav-button", currentPage === totalPages - 1 && "opacity-40")}
+          className={cn("nav-button", currentPage === totalPages - 1 && "opacity-40 pointer-events-none")}
           aria-label="דף הבא"
         >
           <ChevronLeft className="w-6 h-6" />
